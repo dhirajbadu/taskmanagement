@@ -92,4 +92,50 @@ public class TaskControllerSpec {
                 .andExpect(content().string("[{\"id\":3,\"name\":\"Sub Task\",\"description\":\"Desc\",\"taskGroup\":{\"id\":2,\"name\":\"Test\"},\"assignee\":{\"id\":1,\"name\":\"Dhiraj\"},\"status\":\"COMPLETED\",\"timeSpend\":10,\"subTask\":null}]"));
     }
 
+    @Test
+    void deleteWithData() throws Exception{
+        EmployeeEntity employeeEntity = employeeRepository.save(new EmployeeEntity("Dhiraj"));
+        TaskGroupEntity taskGroup = taskGroupRepository.save(new TaskGroupEntity("Test"));
+        TaskEntity subTask = taskRepository.save(new TaskEntity("Sub Task", "Desc", taskGroup, employeeEntity, TaskStatus.COMPLETED, 10));
+        String baseUrl = "http://localhost:" + port + "/task/delete?taskId="+subTask.getId();
+        this.mvc.perform(get(baseUrl)).andDo(print()).andExpect(status().isOk());
+    }
+
+    @Test
+    void deleteWithOutData() throws Exception{
+       String baseUrl = "http://localhost:" + port + "/task/delete?taskId=1";
+        this.mvc.perform(get(baseUrl)).andDo(print()).andExpect(status().isNotFound());
+    }
+
+    @Test
+    void updateWithData() throws Exception{
+        EmployeeEntity employeeEntity = employeeRepository.save(new EmployeeEntity("Dhiraj"));
+        TaskGroupEntity taskGroup = taskGroupRepository.save(new TaskGroupEntity("Test"));
+        TaskEntity task = taskRepository.save(new TaskEntity("Sub Task", "Desc", taskGroup, employeeEntity, TaskStatus.COMPLETED, 10));
+
+        String data = "{\"id\":"+task.getId()+",\"name\":\"Dhiraj\",\"description\":\"Test description\",\"taskGroup\":{\"id\":"+taskGroup.getId()+"},\"assignee\":{\"id\":"+employeeEntity.getId()+"},\"status\":\"PENDING\",\"timeSpend\":0}";
+
+        String baseUrl = "http://localhost:" + port + "/task/update";
+        this.mvc.perform(post(baseUrl)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(data)
+                        .characterEncoding("utf-8")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string("{\"id\":"+task.getId()+",\"name\":\"Dhiraj\",\"description\":\"Test description\",\"taskGroup\":{\"id\":2,\"name\":\"Test\"},\"assignee\":{\"id\":1,\"name\":\"Dhiraj\"},\"status\":\"PENDING\",\"timeSpend\":0,\"subTask\":null}"));
+    }
+
+    @Test
+    void updateWithOutData() throws Exception{
+        EmployeeEntity employeeEntity = employeeRepository.save(new EmployeeEntity("Dhiraj"));
+        TaskGroupEntity taskGroup = taskGroupRepository.save(new TaskGroupEntity("Test"));
+
+        String data = "{\"id\": 2,\"name\":\"Dhiraj\",\"description\":\"Test description\",\"taskGroup\":{\"id\":"+taskGroup.getId()+"},\"assignee\":{\"id\":"+employeeEntity.getId()+"},\"status\":\"PENDING\",\"timeSpend\":0}";
+
+        String baseUrl = "http://localhost:" + port + "/task/update";
+        this.mvc.perform(post(baseUrl)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(data)
+                        .characterEncoding("utf-8")).andDo(print()).andExpect(status().isNotFound());
+    }
+
+
 }

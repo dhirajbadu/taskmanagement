@@ -7,7 +7,13 @@ import java.util.List;
 
 public interface TaskService {
 
+    public TaskDTO getById(Long taskId);
+
     public TaskDTO save(TaskDTO taskDTO);
 
     public List<TaskDTO> list();
+
+    public void delete(Long taskId);
+
+    public TaskDTO update(TaskDTO taskDTO);
 }
