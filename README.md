@@ -20,9 +20,9 @@ Here we have used mvc mock test to test the rest controllers.
 * I have craeted a profile for development and production.
 * I have created a diffent config file according to the active profile like dev and prod.
 ````
-<a href="src/main/resources/application.properties">Main Config</a>
-<a href="src/main/resources/application-develop.properties">Dev Config</a>
-<a href="src/main/resources/application-production.properties">Prod Config</a>
+* <a href="src/main/resources/application.properties">Main Config</a>
+* <a href="src/main/resources/application-develop.properties">Dev Config</a>
+* <a href="src/main/resources/application-production.properties">Prod Config</a>
 # Run
 * To run the application enter the ./gradlew bootRun command in terminal
 * To run the test goto the test class and run the test cases.
