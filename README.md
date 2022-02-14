@@ -5,6 +5,8 @@ We have a two parent package there are we and core.
 expose the entity and repository.
 * In core layer we write a business logic and database tables and queries.
 * We have instroduced a DTO object to send and get data to the web layer. 
+
+I have craete three table here. Task is for task data, TaskGroup is created to make the group dynamic and employee to make it dymanic for the assignee.
 ````
 # Test
 ````
