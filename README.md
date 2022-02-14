@@ -10,9 +10,9 @@ expose the entity and repository.
 ````
 Here we have used mvc mock test to test the rest controllers.
 ````
-* <a href="taskmanagement/src/test/java/com/taskmanagement/web/controller/TaskControllerSpec.java">Task Controller Test</a>
-* <a href="taskmanagement/src/test/java/com/taskmanagement/web/controller/TaskGroupControllerSpec.java">Task Group Controller Test</a>
-* <a href="taskmanagement/src/test/java/com/taskmanagement/web/controller/EmployeeControllerSpec.java">Employee Controller Test</a>
+* <a href="src/test/java/com/taskmanagement/web/controller/TaskControllerSpec.java">Task Controller Test</a>
+* <a href="src/test/java/com/taskmanagement/web/controller/TaskGroupControllerSpec.java">Task Group Controller Test</a>
+* <a href="src/test/java/com/taskmanagement/web/controller/EmployeeControllerSpec.java">Employee Controller Test</a>
 
 # Configuratuin
 ````
@@ -20,6 +20,6 @@ Here we have used mvc mock test to test the rest controllers.
 * I have craeted a profile for development and production.
 * I have created a diffent config file according to the active profile like dev and prod.
 ````
-<a href="taskmanagement/src/main/resources/application.properties">Main Config</a>
-<a href="taskmanagement/src/main/resources/application-develop.properties">Dev Config</a>
-<a href="taskmanagement/src/main/resources/application-production.properties">Prod Config</a>
+<a href="src/main/resources/application.properties">Main Config</a>
+<a href="src/main/resources/application-develop.properties">Dev Config</a>
+<a href="src/main/resources/application-production.properties">Prod Config</a>
