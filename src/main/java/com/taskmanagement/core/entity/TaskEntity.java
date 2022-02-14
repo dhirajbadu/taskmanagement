@@ -26,6 +26,17 @@ public class TaskEntity extends AbstractEntity<Long>{
     @ManyToOne(fetch = FetchType.EAGER)
     private TaskEntity subTask;
 
+    public TaskEntity(){}
+
+    public TaskEntity(String name, String description, TaskGroupEntity taskGroup, EmployeeEntity assignee, TaskStatus status, int timeSpend) {
+        this.name = name;
+        this.description = description;
+        this.taskGroup = taskGroup;
+        this.assignee = assignee;
+        this.status = status;
+        this.timeSpend = timeSpend;
+    }
+
     public String getName() {
         return name;
     }

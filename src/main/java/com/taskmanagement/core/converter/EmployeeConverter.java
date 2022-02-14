@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class EmployeeConterver implements IConvertable<EmployeeEntity, EmployeeDTO >{
+public class EmployeeConverter implements IConvertable<EmployeeEntity, EmployeeDTO >{
 
     @Override
     public EmployeeEntity convertToEntity(EmployeeDTO dto) {

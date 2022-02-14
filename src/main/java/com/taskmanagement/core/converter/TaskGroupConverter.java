@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TaskGroupConterver implements IConvertable<TaskGroupEntity, TaskGroupDTO >{
+public class TaskGroupConverter implements IConvertable<TaskGroupEntity, TaskGroupDTO >{
 
     @Override
     public TaskGroupEntity convertToEntity(TaskGroupDTO dto) {

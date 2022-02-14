@@ -1,6 +1,6 @@
 package com.taskmanagement.core.service.impl;
 
-import com.taskmanagement.core.converter.EmployeeConterver;
+import com.taskmanagement.core.converter.EmployeeConverter;
 import com.taskmanagement.core.model.EmployeeDTO;
 import com.taskmanagement.core.repository.EmployeeRepository;
 import com.taskmanagement.core.service.EmployeeService;
@@ -13,7 +13,7 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    private EmployeeConterver employeeConterver;
+    private EmployeeConverter employeeConterver;
 
     @Autowired
     private EmployeeRepository employeeRepository;

@@ -2,7 +2,6 @@ package com.taskmanagement.core.converter;
 
 import com.taskmanagement.core.entity.TaskEntity;
 import com.taskmanagement.core.model.TaskDTO;
-import com.taskmanagement.core.model.TaskGroupDTO;
 import com.taskmanagement.core.repository.EmployeeRepository;
 import com.taskmanagement.core.repository.TaskGroupRepository;
 import com.taskmanagement.core.repository.TaskRepository;
@@ -13,13 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TaskConterter implements IConvertable<TaskEntity, TaskDTO> {
+public class TaskConverter implements IConvertable<TaskEntity, TaskDTO> {
 
     @Autowired
-    private EmployeeConterver employeeConterver;
+    private EmployeeConverter employeeConterver;
 
     @Autowired
-    private TaskGroupConterver taskGroupConterver;
+    private TaskGroupConverter taskGroupConverter;
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -32,7 +31,7 @@ public class TaskConterter implements IConvertable<TaskEntity, TaskDTO> {
 
     @Override
     public TaskEntity convertToEntity(TaskDTO dto) {
-        return null;
+        return copyConvertToEntity(dto, new TaskEntity());
     }
 
     @Override
@@ -50,7 +49,7 @@ public class TaskConterter implements IConvertable<TaskEntity, TaskDTO> {
         dto.setStatus(entity.getStatus());
         dto.setTimeSpend(entity.getTimeSpend());
         dto.setAssignee(employeeConterver.convertToDto(entity.getAssignee()));
-        dto.setTaskGroup(taskGroupConterver.convertToDto(entity.getTaskGroup()));
+        dto.setTaskGroup(taskGroupConverter.convertToDto(entity.getTaskGroup()));
         dto.setSubTask(convertToDto(entity.getSubTask()));
 
         return dto;
@@ -66,9 +65,9 @@ public class TaskConterter implements IConvertable<TaskEntity, TaskDTO> {
         entity.setDescription(dto.getDescription());
         entity.setStatus(dto.getStatus());
         entity.setTimeSpend(dto.getTimeSpend());
-        if(dto.getAssignee() != null) entity.setAssignee(employeeRepository.findById(dto.getAssignee().getId()).get());
-        if(dto.getTaskGroup() != null) entity.setTaskGroup(taskGroupRepository.findById(dto.getTaskGroup().getId()).get());
-        if(dto.getSubTask() != null) entity.setSubTask(taskRepository.findById(dto.getSubTask().getId()).get());
+        if(dto.getAssignee() != null) entity.setAssignee(employeeRepository.findById(dto.getAssignee().getId()).orElse(null));
+        if(dto.getTaskGroup() != null) entity.setTaskGroup(taskGroupRepository.findById(dto.getTaskGroup().getId()).orElse(null));
+        if(dto.getSubTask() != null) entity.setSubTask(taskRepository.findById(dto.getSubTask().getId()).orElse(null));
 
 
         return entity;

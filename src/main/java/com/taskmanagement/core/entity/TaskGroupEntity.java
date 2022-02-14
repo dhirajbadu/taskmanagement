@@ -6,6 +6,12 @@ import javax.persistence.Entity;
 public class TaskGroupEntity extends AbstractEntity<Long>{
     private String groupName;
 
+    public TaskGroupEntity(){}
+
+    public TaskGroupEntity(String groupName){
+        this.groupName = groupName;
+    }
+
     public String getGroupName() {
         return groupName;
     }
